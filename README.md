@@ -1,2 +1,1 @@
-# WalletTestnetAPIHub
-Advanced WalletTestnetAPIHub project
+.
