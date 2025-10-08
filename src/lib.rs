@@ -4,17 +4,27 @@
  */
 
 use log::{info, error};
+use env_logger::Builder;
 
+/// Custom result type for the library
 pub type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 
 /// Main processing function
+/// 
+/// # Arguments
+/// 
+/// * `verbose` - Whether to enable debug logging
+/// 
+/// # Returns
+/// 
+/// * `Result<()>` - The result of the processing
 pub fn run(verbose: bool) -> Result<()> {
+    // Initialize the logger
+    let builder = Builder::from_default_env();
     if verbose {
-        env_logger::Builder::from_default_env()
-            .filter_level(log::LevelFilter::Debug)
-            .init();
+        builder.filter_level(log::LevelFilter::Debug).init();
     } else {
-        env_logger::init();
+        builder.init();
     }
     
     info!("Starting WalletTestnetAPIHub processing");
